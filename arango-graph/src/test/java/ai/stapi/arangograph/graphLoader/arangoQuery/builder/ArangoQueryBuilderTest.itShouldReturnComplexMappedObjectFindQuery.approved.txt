@@ -1,0 +1,266 @@
+{
+  "queryString" : "LET mainSubQuery = (
+
+    FOR nodeElement IN @@collection
+    FILTER (
+        nodeElement.attributes.@filterAttributeNamePlaceholder_0[0].values[*].value
+    ) LIKE @filterAttributeValuePlaceholder_0
+    SORT nodeElement.attributes.@sortAttributeNamePlaceholder_0[0].values[0].value ASC
+    LIMIT @offset,
+    @limit
+    LET subQuery_0 = (
+
+        FOR nodeElement_0,
+        edgeElement_0 IN INBOUND nodeElement @@collection_0
+        FILTER (
+            nodeElement_0.attributes.@filterAttributeNamePlaceholder_0__0[0].values[*].value
+        ) == @filterAttributeValuePlaceholder_0__0
+        LET subQuery_0_0 = (
+            PARSE_IDENTIFIER (
+                nodeElement_0._id
+            ).collection == @joinedNodeCollection_0__0 ? (
+
+                RETURN {
+                    data: {
+                        [@mappedFieldName_0__node_0]: nodeElement_0.attributes.@mappedAttributeName_0__node_0[0].values[*].value
+                    },
+                    graphResponse: {
+
+                    }
+                }
+            ) : (
+
+                RETURN {
+                    graphResponse: {
+                        nodes: [ {
+                            [\"_id\"]: nodeElement_0._id,
+                            [\"_key\"]: nodeElement_0._key,
+                            [\"_metaData\"]: nodeElement_0._metaData,
+                            [\"_rev\"]: nodeElement_0._rev,
+                            [\"attributes\"]: {
+
+                            }
+                        } ],
+                        edges: []
+                    },
+                    data: {
+
+                    }
+                }
+            )
+        )
+        RETURN {
+            [\"data\"]: {
+                [\"edges\"]: {
+                    [@mappedFieldName_0__edge_0]: subQuery_0_0[0].data
+                }
+            },
+            [\"graphResponse\"]: {
+
+            }
+        }
+    )
+    LET subQuery_1 = (
+
+        FOR nodeElement_1,
+        edgeElement_1 IN OUTBOUND nodeElement @@collection_1
+        LET subQuery_1_0 = (
+            PARSE_IDENTIFIER (
+                nodeElement_1._id
+            ).collection == @joinedNodeCollection_0__1 ? (
+
+                LET subQuery_graphTraverOption_1_0 = (
+
+                    FOR nodeElement_1_0,
+                    edgeElement_1_0 IN OUTBOUND nodeElement_1 @@collection_1_0
+                    FILTER (
+                        nodeElement_1_0.attributes.@filterAttributeNamePlaceholder_0__1_0[0].values[*].value
+                    ) LIKE @filterAttributeValuePlaceholder_0__1_0
+                    FILTER (
+                        edgeElement_1_0.attributes.@filterAttributeNamePlaceholder_0__1_0[0].values[*].value
+                    ) LIKE @filterAttributeValuePlaceholder_0__1_0
+                    LET subQuery_1_0_0 = (
+                        PARSE_IDENTIFIER (
+                            nodeElement_1_0._id
+                        ).collection == @joinedNodeCollection_0__1_0 ? (
+
+                            RETURN {
+                                data: {
+                                    [@mappedFieldName_0__node_1_0]: nodeElement_1_0.attributes.@mappedAttributeName_0__node_1_0[0].values[*].value
+                                },
+                                graphResponse: {
+
+                                }
+                            }
+                        ) : (
+
+                            RETURN {
+                                graphResponse: {
+                                    nodes: [ {
+                                        [\"_id\"]: nodeElement_1_0._id,
+                                        [\"_key\"]: nodeElement_1_0._key,
+                                        [\"_metaData\"]: nodeElement_1_0._metaData,
+                                        [\"_rev\"]: nodeElement_1_0._rev,
+                                        [\"attributes\"]: {
+
+                                        }
+                                    } ],
+                                    edges: []
+                                },
+                                data: {
+
+                                }
+                            }
+                        )
+                    )
+                    RETURN {
+                        [\"data\"]: {
+                            [\"edges\"]: {
+                                [@mappedFieldName_0__edge_1_0]: edgeElement_1_0.attributes.@mappedAttributeName_0__edge_1_0[0].values[*].value,
+                                [@mappedFieldName_1__edge_1_0]: subQuery_1_0_0[0].data
+                            }
+                        },
+                        [\"graphResponse\"]: {
+
+                        }
+                    }
+                )
+                RETURN {
+                    data: {
+                        [@mappedFieldName_0__node_1]: subQuery_graphTraverOption_1_0[*].data
+                    },
+                    graphResponse: {
+
+                    }
+                }
+            ) : (
+
+                RETURN {
+                    graphResponse: {
+                        nodes: [ {
+                            [\"_id\"]: nodeElement_1._id,
+                            [\"_key\"]: nodeElement_1._key,
+                            [\"_metaData\"]: nodeElement_1._metaData,
+                            [\"_rev\"]: nodeElement_1._rev,
+                            [\"attributes\"]: {
+
+                            }
+                        } ],
+                        edges: []
+                    },
+                    data: {
+
+                    }
+                }
+            )
+        )
+        RETURN {
+            [\"data\"]: {
+                [\"edges\"]: {
+                    [@mappedFieldName_0__edge_1]: subQuery_1_0[0].data
+                }
+            },
+            [\"graphResponse\"]: {
+
+            }
+        }
+    )
+    LET subQuery_2 = (
+
+        FOR nodeElement_2,
+        edgeElement_2 IN OUTBOUND nodeElement @@collection_2
+        LET subQuery_2_0 = (
+            (
+
+                RETURN {
+                    graphResponse: {
+                        nodes: [ {
+                            [\"_id\"]: nodeElement_2._id,
+                            [\"_key\"]: nodeElement_2._key,
+                            [\"_metaData\"]: nodeElement_2._metaData,
+                            [\"_rev\"]: nodeElement_2._rev,
+                            [\"attributes\"]: {
+
+                            }
+                        } ],
+                        edges: []
+                    },
+                    data: {
+
+                    }
+                }
+            )
+        )
+        RETURN {
+            [\"data\"]: {
+                [\"edges\"]: {
+                    [@mappedFieldName_0__edge_2]: edgeElement_2.attributes.@mappedAttributeName_0__edge_2[0].values[*].value
+                }
+            },
+            [\"graphResponse\"]: {
+
+            }
+        }
+    )
+    RETURN {
+        [\"data\"]: {
+            [@mappedFieldName_0]: nodeElement.attributes.@mappedAttributeName_0[0].values[*].value,
+            [@mappedFieldName_1]: nodeElement.attributes.@mappedAttributeName_1[0].values[*].value,
+            [@mappedFieldName_2]: nodeElement.attributes.@mappedAttributeName_2[0].values[*].value,
+            [@mappedFieldName_3]: subQuery_0[*].data,
+            [@mappedFieldName_4]: subQuery_1[*].data,
+            [@mappedFieldName_5]: subQuery_2[*].data
+        },
+        [\"graphResponse\"]: {
+
+        }
+    }
+)
+RETURN {
+    [\"data\"]: mainSubQuery[*].data[**],
+    [\"graphResponse\"]: {
+
+    }
+}
+",
+  "bindParameters" : {
+    "@collection" : "example_start_node_type",
+    "@collection_0" : "example_edge_type_1",
+    "@collection_1" : "example_edge_type_2",
+    "@collection_1_0" : "example_edge_type_2_2",
+    "@collection_2" : "example_edge_type_3",
+    "filterAttributeNamePlaceholder_0" : "some_attribute",
+    "filterAttributeNamePlaceholder_0__0" : "some_node_from_attribute",
+    "filterAttributeNamePlaceholder_0__1_0" : "some_node_deeper_attribute",
+    "filterAttributeValuePlaceholder_0" : "%some_value%",
+    "filterAttributeValuePlaceholder_0__0" : "someValue",
+    "filterAttributeValuePlaceholder_0__1_0" : "%someValue%",
+    "joinedNodeCollection_0__0" : "example_node_from_1",
+    "joinedNodeCollection_0__1" : "example_node_to_2",
+    "joinedNodeCollection_0__1_0" : "example_deeper_node",
+    "limit" : 100,
+    "mappedAttributeName_0" : "some_attribute",
+    "mappedAttributeName_0__edge_1_0" : "some_edge_deeper_attribute",
+    "mappedAttributeName_0__edge_2" : "example_edge_attribute_name_3",
+    "mappedAttributeName_0__node_0" : "some_node_from_attribute",
+    "mappedAttributeName_0__node_1_0" : "some_node_deeper_attribute",
+    "mappedAttributeName_1" : "isExample",
+    "mappedAttributeName_2" : "quantity",
+    "mappedFieldName_0" : "someAttribute",
+    "mappedFieldName_0__edge_0" : "node",
+    "mappedFieldName_0__edge_1" : "node",
+    "mappedFieldName_0__edge_1_0" : "someEdgeDeeperAttribute",
+    "mappedFieldName_0__edge_2" : "someThirdEdgeAttribute",
+    "mappedFieldName_0__node_0" : "firstNodeAttributeName",
+    "mappedFieldName_0__node_1" : "hasDeeperNodesConnections",
+    "mappedFieldName_0__node_1_0" : "someNodeDeeperAttribute",
+    "mappedFieldName_1" : "isExample",
+    "mappedFieldName_1__edge_1_0" : "node",
+    "mappedFieldName_2" : "quantity",
+    "mappedFieldName_3" : "hasFirstNodesConnections",
+    "mappedFieldName_4" : "hasSecondNodesConnections",
+    "mappedFieldName_5" : "hasThirdNodesConnections",
+    "offset" : 5,
+    "sortAttributeNamePlaceholder_0" : "some_attribute"
+  }
+}

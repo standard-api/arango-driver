@@ -1,0 +1,9 @@
+{
+  "queryString" : "( ( exampleDocumentName.attributes.@filterAttributeNamePlaceholder_and_0[0].values[*].value ) == @filterAttributeValuePlaceholder_and_0 AND ( exampleDocumentName.attributes.@filterAttributeNamePlaceholder_and_1[0].values[*].value ) > @filterAttributeValuePlaceholder_and_1 )",
+  "bindParameters" : {
+    "filterAttributeNamePlaceholder_and_0" : "example_attribute_1",
+    "filterAttributeNamePlaceholder_and_1" : "example_attribute_2",
+    "filterAttributeValuePlaceholder_and_0" : "Example Equal Value",
+    "filterAttributeValuePlaceholder_and_1" : 5
+  }
+}

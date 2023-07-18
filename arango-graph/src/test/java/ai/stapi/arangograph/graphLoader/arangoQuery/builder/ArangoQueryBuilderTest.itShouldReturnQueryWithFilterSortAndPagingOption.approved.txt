@@ -1,0 +1,47 @@
+{
+  "queryString" : "LET mainSubQuery = (
+
+    FOR nodeElement IN @@collection
+    FILTER (
+        nodeElement.attributes.@filterAttributeNamePlaceholder_0[0].values[*].value
+    ) == @filterAttributeValuePlaceholder_0
+    SORT nodeElement.attributes.@sortAttributeNamePlaceholder_0[0].values[0].value ASC
+    LIMIT @offset,
+    @limit
+    RETURN {
+        [\"data\"]: {
+
+        },
+        [\"graphResponse\"]: {
+            [\"edges\"]: [ ],
+            [\"mainGraphElement\"]: {
+                [\"_id\"]: nodeElement._id,
+                [\"_key\"]: nodeElement._key,
+                [\"_metaData\"]: nodeElement._metaData,
+                [\"_rev\"]: nodeElement._rev,
+                [\"attributes\"]: {
+
+                }
+            },
+            [\"nodes\"]: [ ]
+        }
+    }
+)
+RETURN {
+    [\"data\"]: [ ],
+    [\"graphResponse\"]: {
+        [\"edges\"]: mainSubQuery[*].graphResponse.edges[**],
+        [\"mainGraphElements\"]: mainSubQuery[*].graphResponse.mainGraphElement,
+        [\"nodes\"]: mainSubQuery[*].graphResponse.nodes[**]
+    }
+}
+",
+  "bindParameters" : {
+    "@collection" : "example_node_type",
+    "filterAttributeNamePlaceholder_0" : "example_attribute_name",
+    "filterAttributeValuePlaceholder_0" : "example value",
+    "limit" : 10,
+    "offset" : 3,
+    "sortAttributeNamePlaceholder_0" : "example_sorting_attribute"
+  }
+}

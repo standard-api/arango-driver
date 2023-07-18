@@ -1,0 +1,34 @@
+{
+  "queryString" : "LET nodeElement = (
+    DOCUMENT (
+        CONCAT_SEPARATOR (
+            \"/\",
+            @collection,
+            @graphElementIdPlaceholder
+        )
+    )
+)
+RETURN {
+    [\"data\"]: {
+
+    },
+    [\"graphResponse\"]: {
+        [\"edges\"]: [ ],
+        [\"mainGraphElement\"]: {
+            [\"_id\"]: nodeElement._id,
+            [\"_key\"]: nodeElement._key,
+            [\"_metaData\"]: nodeElement._metaData,
+            [\"_rev\"]: nodeElement._rev,
+            [\"attributes\"]: {
+
+            }
+        },
+        [\"nodes\"]: [ ]
+    }
+}
+",
+  "bindParameters" : {
+    "graphElementIdPlaceholder" : "576a533b-5764-401b-876c-9df37461bf90",
+    "collection" : "example_node_type"
+  }
+}

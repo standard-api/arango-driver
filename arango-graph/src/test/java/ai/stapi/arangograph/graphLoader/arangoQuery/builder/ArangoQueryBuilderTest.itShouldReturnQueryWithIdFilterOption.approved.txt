@@ -1,0 +1,38 @@
+{
+  "queryString" : "LET mainSubQuery = (
+
+    FOR nodeElement IN @@collection
+    FILTER nodeElement._key == @filterAttributeValuePlaceholder_0
+    RETURN {
+        [\"data\"]: {
+
+        },
+        [\"graphResponse\"]: {
+            [\"edges\"]: [ ],
+            [\"mainGraphElement\"]: {
+                [\"_id\"]: nodeElement._id,
+                [\"_key\"]: nodeElement._key,
+                [\"_metaData\"]: nodeElement._metaData,
+                [\"_rev\"]: nodeElement._rev,
+                [\"attributes\"]: {
+
+                }
+            },
+            [\"nodes\"]: [ ]
+        }
+    }
+)
+RETURN {
+    [\"data\"]: [ ],
+    [\"graphResponse\"]: {
+        [\"edges\"]: mainSubQuery[*].graphResponse.edges[**],
+        [\"mainGraphElements\"]: mainSubQuery[*].graphResponse.mainGraphElement,
+        [\"nodes\"]: mainSubQuery[*].graphResponse.nodes[**]
+    }
+}
+",
+  "bindParameters" : {
+    "@collection" : "example_node_type",
+    "filterAttributeValuePlaceholder_0" : "ExampleId"
+  }
+}

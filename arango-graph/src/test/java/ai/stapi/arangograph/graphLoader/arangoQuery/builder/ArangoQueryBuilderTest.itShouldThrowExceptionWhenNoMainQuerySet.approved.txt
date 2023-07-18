@@ -1,0 +1,1 @@
+Cannot build arango query, because there was no main query set.

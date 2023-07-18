@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>ai.stapi</groupId>
+        <artifactId>arango-driver</artifactId>
+        <version>0.0.1</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <artifactId>arango-graph</artifactId>
+    <version>0.0.1</version>
+    <name>Stapi.ai Arango Graph</name>
+    <properties>
+        <java.version>17</java.version>
+        <stapi.core.version>0.1.4</stapi.core.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>ai.stapi</groupId>
+            <artifactId>graph-operations</artifactId>
+            <version>${stapi.core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.arangodb</groupId>
+            <artifactId>jackson-dataformat-velocypack</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.arangodb</groupId>
+            <artifactId>arangodb-java-driver</artifactId>
+            <version>7.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>ai.stapi</groupId>
+            <artifactId>base-test</artifactId>
+            <version>${stapi.core.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>24.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+</project>

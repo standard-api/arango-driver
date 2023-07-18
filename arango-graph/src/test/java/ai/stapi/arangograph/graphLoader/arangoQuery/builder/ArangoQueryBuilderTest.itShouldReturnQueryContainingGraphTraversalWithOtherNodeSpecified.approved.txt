@@ -1,0 +1,116 @@
+{
+  "queryString" : "LET mainSubQuery = (
+
+    FOR nodeElement IN @@collection
+    LET subQuery_0 = (
+
+        FOR nodeElement_0,
+        edgeElement_0 IN OUTBOUND nodeElement @@collection_0
+        LET subQuery_0_0 = (
+            PARSE_IDENTIFIER (
+                nodeElement_0._id
+            ).collection == @joinedNodeCollection_0__0 ? (
+
+                RETURN {
+                    data: {
+
+                    },
+                    graphResponse: {
+                        edges: [],
+                        nodes: PUSH (
+                            [],
+                            {
+                                [\"_id\"]: nodeElement_0._id,
+                                [\"_key\"]: nodeElement_0._key,
+                                [\"_metaData\"]: nodeElement_0._metaData,
+                                [\"_rev\"]: nodeElement_0._rev,
+                                [\"attributes\"]: {
+
+                                }
+                            }
+                        )
+                    }
+                }
+            ) : (
+
+                RETURN {
+                    graphResponse: {
+                        nodes: [ {
+                            [\"_id\"]: nodeElement_0._id,
+                            [\"_key\"]: nodeElement_0._key,
+                            [\"_metaData\"]: nodeElement_0._metaData,
+                            [\"_rev\"]: nodeElement_0._rev,
+                            [\"attributes\"]: {
+
+                            }
+                        } ],
+                        edges: []
+                    },
+                    data: {
+
+                    }
+                }
+            )
+        )
+        LET mappedEdgeObject0 = (
+            {
+
+            }
+        )
+        RETURN {
+            [\"data\"]: {
+
+            },
+            [\"graphResponse\"]: {
+                [\"edges\"]: PUSH (
+                    subQuery_0_0[*].graphResponse.edges[**],
+                    {
+                        [\"_from\"]: edgeElement_0._from,
+                        [\"_id\"]: edgeElement_0._id,
+                        [\"_key\"]: edgeElement_0._key,
+                        [\"_metaData\"]: edgeElement_0._metaData,
+                        [\"_rev\"]: edgeElement_0._rev,
+                        [\"_to\"]: edgeElement_0._to,
+                        [\"attributes\"]: {
+
+                        }
+                    }
+                ),
+                [\"nodes\"]: subQuery_0_0[*].graphResponse.nodes[**]
+            }
+        }
+    )
+    RETURN {
+        [\"data\"]: {
+
+        },
+        [\"graphResponse\"]: {
+            [\"edges\"]: subQuery_0[*].graphResponse.edges[**],
+            [\"mainGraphElement\"]: {
+                [\"_id\"]: nodeElement._id,
+                [\"_key\"]: nodeElement._key,
+                [\"_metaData\"]: nodeElement._metaData,
+                [\"_rev\"]: nodeElement._rev,
+                [\"attributes\"]: {
+
+                }
+            },
+            [\"nodes\"]: subQuery_0[*].graphResponse.nodes[**]
+        }
+    }
+)
+RETURN {
+    [\"data\"]: [ ],
+    [\"graphResponse\"]: {
+        [\"edges\"]: mainSubQuery[*].graphResponse.edges[**],
+        [\"mainGraphElements\"]: mainSubQuery[*].graphResponse.mainGraphElement,
+        [\"nodes\"]: mainSubQuery[*].graphResponse.nodes[**]
+    }
+}
+",
+  "bindParameters" : {
+    "@collection" : "example_start_node_type",
+    "@collection_0" : "example_edge_type",
+    "joinedNodeCollection_0__0" : "example_other_node_type"
+  }
+}
