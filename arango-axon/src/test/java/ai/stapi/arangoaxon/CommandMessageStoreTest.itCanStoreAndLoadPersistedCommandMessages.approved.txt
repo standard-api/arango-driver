@@ -1,0 +1,17 @@
+[ {
+  "targetAggregateIdentifier" : "Id",
+  "commandName" : "ai.stapi.arangoaxon.CommandMessageStoreTest$ExampleCommand",
+  "commandMetaData" : { },
+  "commandPayload" : {
+    "identifier" : "Id",
+    "someField" : "someValue"
+  }
+}, {
+  "targetAggregateIdentifier" : "ExampleDynamicCommmandId",
+  "commandName" : "ExampledDynamicCommandType",
+  "commandMetaData" : { },
+  "commandPayload" : {
+    "id" : "ExampleDynamicCommmandId",
+    "exampleData" : "exampleValue"
+  }
+} ]

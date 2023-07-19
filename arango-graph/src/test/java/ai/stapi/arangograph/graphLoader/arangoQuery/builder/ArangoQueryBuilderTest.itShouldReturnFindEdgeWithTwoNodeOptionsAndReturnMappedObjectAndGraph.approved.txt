@@ -1,0 +1,234 @@
+{
+  "queryString" : "LET mainSubQuery = (
+
+    FOR edgeElement IN @@collection
+    LET subQuery_0 = (
+        PARSE_IDENTIFIER (
+            edgeElement._to
+        ).collection == @joinedNodeCollection_0__0 ? (
+
+            LET nodeElement_0_0 = (
+                DOCUMENT (
+                    edgeElement._to
+                )
+            )
+            LET subQuery_0_0_0 = (
+
+                FOR nodeElement_0_0_0,
+                edgeElement_0_0_0 IN OUTBOUND nodeElement_0_0 @@collection_0_0_0
+                LET subQuery_0_0_0_0 = (
+                    PARSE_IDENTIFIER (
+                        nodeElement_0_0_0._id
+                    ).collection == @joinedNodeCollection_0__0_0_0 ? (
+
+                        RETURN {
+                            data: {
+                                [@mappedFieldName_0__node_0_0_0]: nodeElement_0_0_0.attributes.@mappedAttributeName_0__node_0_0_0[0].values[*].value
+                            },
+                            graphResponse: {
+                                edges: [],
+                                nodes: PUSH (
+                                    [],
+                                    {
+                                        [\"_id\"]: nodeElement_0_0_0._id,
+                                        [\"_key\"]: nodeElement_0_0_0._key,
+                                        [\"_metaData\"]: nodeElement_0_0_0._metaData,
+                                        [\"_rev\"]: nodeElement_0_0_0._rev,
+                                        [\"attributes\"]: KEEP (
+                                            nodeElement_0_0_0.attributes,
+                                            @mappedAttributeName_0__node_0_0_0
+                                        )
+                                    }
+                                )
+                            }
+                        }
+                    ) : (
+
+                        RETURN {
+                            graphResponse: {
+                                nodes: [ {
+                                    [\"_id\"]: nodeElement_0_0_0._id,
+                                    [\"_key\"]: nodeElement_0_0_0._key,
+                                    [\"_metaData\"]: nodeElement_0_0_0._metaData,
+                                    [\"_rev\"]: nodeElement_0_0_0._rev,
+                                    [\"attributes\"]: {
+
+                                    }
+                                } ],
+                                edges: []
+                            },
+                            data: {
+
+                            }
+                        }
+                    )
+                )
+                RETURN {
+                    [\"data\"]: {
+                        [\"edges\"]: {
+                            [@mappedFieldName_0__edge_0_0_0]: subQuery_0_0_0_0[0].data
+                        }
+                    },
+                    [\"graphResponse\"]: {
+                        [\"edges\"]: PUSH (
+                            subQuery_0_0_0_0[*].graphResponse.edges[**],
+                            {
+                                [\"_from\"]: edgeElement_0_0_0._from,
+                                [\"_id\"]: edgeElement_0_0_0._id,
+                                [\"_key\"]: edgeElement_0_0_0._key,
+                                [\"_metaData\"]: edgeElement_0_0_0._metaData,
+                                [\"_rev\"]: edgeElement_0_0_0._rev,
+                                [\"_to\"]: edgeElement_0_0_0._to,
+                                [\"attributes\"]: {
+
+                                }
+                            }
+                        ),
+                        [\"nodes\"]: subQuery_0_0_0_0[*].graphResponse.nodes[**]
+                    }
+                }
+            )
+            RETURN {
+                [\"data\"]: {
+                    [@mappedFieldName_0__0_0]: nodeElement_0_0.attributes.@mappedAttributeName_0__0_0[0].values[*].value,
+                    [@mappedFieldName_1__0_0]: subQuery_0_0_0[*].data
+                },
+                [\"graphResponse\"]: {
+                    [\"edges\"]: subQuery_0_0_0[*].graphResponse.edges[**],
+                    [\"nodes\"]: UNION (
+                        [ {
+                            [\"_id\"]: nodeElement_0_0._id,
+                            [\"_key\"]: nodeElement_0_0._key,
+                            [\"_metaData\"]: nodeElement_0_0._metaData,
+                            [\"_rev\"]: nodeElement_0_0._rev,
+                            [\"attributes\"]: KEEP (
+                                nodeElement_0_0.attributes,
+                                @mappedAttributeName_0__0_0
+                            )
+                        } ],
+                        subQuery_0_0_0[*].graphResponse.nodes[**]
+                    )
+                }
+            }
+        ) : PARSE_IDENTIFIER (
+            edgeElement._to
+        ).collection == @joinedNodeCollection_1__0 ? (
+
+            LET nodeElement_0_1 = (
+                DOCUMENT (
+                    edgeElement._to
+                )
+            )
+            RETURN {
+                [\"data\"]: {
+                    [@mappedFieldName_0__0_1]: nodeElement_0_1.attributes.@mappedAttributeName_0__0_1[0].values[*].value
+                },
+                [\"graphResponse\"]: {
+                    [\"edges\"]: [ ],
+                    [\"nodes\"]: [ {
+                        [\"_id\"]: nodeElement_0_1._id,
+                        [\"_key\"]: nodeElement_0_1._key,
+                        [\"_metaData\"]: nodeElement_0_1._metaData,
+                        [\"_rev\"]: nodeElement_0_1._rev,
+                        [\"attributes\"]: KEEP (
+                            nodeElement_0_1.attributes,
+                            @mappedAttributeName_0__0_1
+                        )
+                    } ]
+                }
+            }
+        ) : (
+
+            LET nodeElement_0_2 = (
+                DOCUMENT (
+                    edgeElement._to
+                )
+            )
+            RETURN {
+                [\"data\"]: {
+
+                },
+                [\"graphResponse\"]: {
+                    [\"edges\"]: [ ],
+                    [\"nodes\"]: [ {
+                        [\"_id\"]: nodeElement_0_2._id,
+                        [\"_key\"]: nodeElement_0_2._key,
+                        [\"_metaData\"]: nodeElement_0_2._metaData,
+                        [\"_rev\"]: nodeElement_0_2._rev,
+                        [\"attributes\"]: {
+
+                        }
+                    } ]
+                }
+            }
+        )
+    )
+    LET otherNode_0 = (
+        DOCUMENT (
+            edgeElement._from
+        )
+    )
+    RETURN {
+        [\"data\"]: {
+            [\"edges\"]: {
+                [@mappedFieldName_0]: edgeElement.attributes.@mappedAttributeName_0[0].values[*].value,
+                [@mappedFieldName_1]: subQuery_0[0].data
+            }
+        },
+        [\"graphResponse\"]: {
+            [\"edges\"]: subQuery_0[*].graphResponse.edges[**],
+            [\"mainGraphElement\"]: {
+                [\"_from\"]: edgeElement._from,
+                [\"_id\"]: edgeElement._id,
+                [\"_key\"]: edgeElement._key,
+                [\"_metaData\"]: edgeElement._metaData,
+                [\"_rev\"]: edgeElement._rev,
+                [\"_to\"]: edgeElement._to,
+                [\"attributes\"]: KEEP (
+                    edgeElement.attributes,
+                    @mappedAttributeName_0
+                )
+            },
+            [\"nodes\"]: PUSH (
+                subQuery_0[*].graphResponse.nodes[**],
+                {
+                    [\"_id\"]: otherNode_0._id,
+                    [\"_key\"]: otherNode_0._key,
+                    [\"_metaData\"]: otherNode_0._metaData,
+                    [\"_rev\"]: otherNode_0._rev,
+                    [\"attributes\"]: {
+
+                    }
+                }
+            )
+        }
+    }
+)
+RETURN {
+    [\"data\"]: mainSubQuery[*].data[**],
+    [\"graphResponse\"]: {
+        [\"edges\"]: mainSubQuery[*].graphResponse.edges[**],
+        [\"mainGraphElements\"]: mainSubQuery[*].graphResponse.mainGraphElement,
+        [\"nodes\"]: mainSubQuery[*].graphResponse.nodes[**]
+    }
+}
+",
+  "bindParameters" : {
+    "@collection" : "example_main_edge_type",
+    "@collection_0_0_0" : "example_second_edge",
+    "joinedNodeCollection_0__0" : "example_node_to_1",
+    "joinedNodeCollection_0__0_0_0" : "example_second_node_to",
+    "joinedNodeCollection_1__0" : "example_node_to_2",
+    "mappedAttributeName_0" : "example_attribute",
+    "mappedAttributeName_0__0_0" : "some_node_to_attribute",
+    "mappedAttributeName_0__0_1" : "some_other_node_to_attribute",
+    "mappedAttributeName_0__node_0_0_0" : "some_node_to_2_attribute",
+    "mappedFieldName_0" : "exampleAttribute",
+    "mappedFieldName_0__0_0" : "someNodeToAttribute",
+    "mappedFieldName_0__0_1" : "someOtherNodeToAttribute",
+    "mappedFieldName_0__edge_0_0_0" : "node",
+    "mappedFieldName_0__node_0_0_0" : "someNodeTo2Attribute",
+    "mappedFieldName_1" : "node",
+    "mappedFieldName_1__0_0" : "hasSecondNodeToConnections"
+  }
+}

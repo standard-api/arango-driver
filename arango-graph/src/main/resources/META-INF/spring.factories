@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  ai.stapi.arangograph.configuration.ArangoDBConfiguration,\
+  ai.stapi.arangograph.configuration.ArangoRepositoryConfiguration,\
+  ai.stapi.arangograph.configuration.ArangoGraphLoaderConfiguration

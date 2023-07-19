@@ -1,0 +1,38 @@
+{
+  "queryString" : "LET mainSubQuery = (
+
+    FOR nodeElement IN @@collection
+    SORT nodeElement.attributes.@sortAttributeNamePlaceholder_0[0].values[0].value ASC
+    RETURN {
+        [\"data\"]: {
+
+        },
+        [\"graphResponse\"]: {
+            [\"edges\"]: [ ],
+            [\"mainGraphElement\"]: {
+                [\"_id\"]: nodeElement._id,
+                [\"_key\"]: nodeElement._key,
+                [\"_metaData\"]: nodeElement._metaData,
+                [\"_rev\"]: nodeElement._rev,
+                [\"attributes\"]: {
+
+                }
+            },
+            [\"nodes\"]: [ ]
+        }
+    }
+)
+RETURN {
+    [\"data\"]: [ ],
+    [\"graphResponse\"]: {
+        [\"edges\"]: mainSubQuery[*].graphResponse.edges[**],
+        [\"mainGraphElements\"]: mainSubQuery[*].graphResponse.mainGraphElement,
+        [\"nodes\"]: mainSubQuery[*].graphResponse.nodes[**]
+    }
+}
+",
+  "bindParameters" : {
+    "@collection" : "example_node_type",
+    "sortAttributeNamePlaceholder_0" : "exampleName"
+  }
+}

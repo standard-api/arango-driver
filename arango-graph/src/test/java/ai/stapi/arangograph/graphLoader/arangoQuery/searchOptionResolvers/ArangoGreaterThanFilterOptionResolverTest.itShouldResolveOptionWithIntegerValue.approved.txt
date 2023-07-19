@@ -1,0 +1,7 @@
+{
+  "queryString" : "( exampleDocumentName.attributes.@filterAttributeNamePlaceholder_examplePostfix__exampleQueryPostfix[0].values[*].value ) > @filterAttributeValuePlaceholder_examplePostfix__exampleQueryPostfix",
+  "bindParameters" : {
+    "filterAttributeNamePlaceholder_examplePostfix__exampleQueryPostfix" : "example_attribute_type",
+    "filterAttributeValuePlaceholder_examplePostfix__exampleQueryPostfix" : 2
+  }
+}

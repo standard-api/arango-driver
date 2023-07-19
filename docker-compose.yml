@@ -1,0 +1,20 @@
+version: "3.7"
+services:
+  test-arangodb:
+    image: arangodb:3.10.2
+    environment:
+      ARANGO_ROOT_PASSWORD: rootpassword
+    ports:
+      - 8555:8529
+    volumes:
+      - test_arangodb_data_container:/var/lib/arangodb3
+      - test_arangodb_apps_data_container:/var/lib/arangodb3-apps
+    networks:
+      - stapi-arango-driver
+
+volumes:
+  test_arangodb_data_container:
+  test_arangodb_apps_data_container:
+
+networks:
+  stapi-arango-driver:
