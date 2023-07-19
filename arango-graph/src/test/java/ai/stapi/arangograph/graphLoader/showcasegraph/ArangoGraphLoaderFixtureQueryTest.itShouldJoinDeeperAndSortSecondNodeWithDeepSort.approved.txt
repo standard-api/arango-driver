@@ -104,31 +104,31 @@
   "differential" : {
     "element" : [ {
       "max" : "1",
+      "min" : 1,
+      "path" : "AggregateDefinition.structure",
+      "type" : [ {
+        "code" : "Reference"
+      } ]
+    }, {
+      "max" : "1",
       "min" : 0,
       "path" : "AggregateDefinition.name",
       "type" : [ {
-        "code" : "string"
+        "code" : "http://hl7.org/fhirpath/System.String"
       } ]
     }, {
       "max" : "1",
       "min" : 0,
       "path" : "AggregateDefinition.id",
       "type" : [ {
-        "code" : "string"
+        "code" : "http://hl7.org/fhirpath/System.String"
       } ]
     }, {
       "max" : "1",
       "min" : 0,
       "path" : "AggregateDefinition.description",
       "type" : [ {
-        "code" : "string"
-      } ]
-    }, {
-      "max" : "1",
-      "min" : 1,
-      "path" : "AggregateDefinition.structure",
-      "type" : [ {
-        "code" : "Reference"
+        "code" : "http://hl7.org/fhirpath/System.String"
       } ]
     }, {
       "max" : "*",
@@ -169,7 +169,7 @@
       "min" : 0,
       "path" : "base64Binary.value",
       "type" : [ {
-        "code" : "string"
+        "code" : "http://hl7.org/fhirpath/System.String"
       } ]
     }, {
       "max" : "*",
@@ -186,7 +186,7 @@
       "min" : 0,
       "path" : "boolean.value",
       "type" : [ {
-        "code" : "boolean"
+        "code" : "http://hl7.org/fhirpath/System.Boolean"
       } ]
     }, {
       "max" : "*",
@@ -203,7 +203,7 @@
       "min" : 0,
       "path" : "canonical.value",
       "type" : [ {
-        "code" : "string"
+        "code" : "http://hl7.org/fhirpath/System.String"
       } ]
     }, {
       "max" : "*",
@@ -220,7 +220,7 @@
       "min" : 0,
       "path" : "code.value",
       "type" : [ {
-        "code" : "string"
+        "code" : "http://hl7.org/fhirpath/System.String"
       } ]
     }, {
       "max" : "*",
@@ -615,7 +615,7 @@
       "min" : 0,
       "path" : "date.value",
       "type" : [ {
-        "code" : "date"
+        "code" : "http://hl7.org/fhirpath/System.Date"
       } ]
     }, {
       "max" : "*",
@@ -632,7 +632,7 @@
       "min" : 0,
       "path" : "dateTime.value",
       "type" : [ {
-        "code" : "dateTime"
+        "code" : "http://hl7.org/fhirpath/System.DateTime"
       } ]
     }, {
       "max" : "*",
@@ -649,7 +649,7 @@
       "min" : 0,
       "path" : "decimal.value",
       "type" : [ {
-        "code" : "decimal"
+        "code" : "http://hl7.org/fhirpath/System.Decimal"
       } ]
     }, {
       "max" : "*",

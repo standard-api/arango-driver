@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.context.annotation.Lazy;
 
 public class ArangoNodeRepository implements NodeRepository {
 
@@ -30,7 +29,7 @@ public class ArangoNodeRepository implements NodeRepository {
 
   public ArangoNodeRepository(
       ArangoDB arangoDb,
-      @Lazy ArangoEdgeRepository edgeRepository
+      ArangoEdgeRepository edgeRepository
   ) {
     this.arangoDb = arangoDb;
     this.edgeRepository = edgeRepository;

@@ -15,16 +15,13 @@ import ai.stapi.graphoperations.graphLoader.search.filterOption.AllMatchFilterOp
 import ai.stapi.schema.structureSchemaProvider.StructureSchemaFinder;
 import java.util.HashMap;
 import java.util.Objects;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Service;
 
-@Service
 public class ArangoAllMatchFilterOptionResolver
     extends AbstractArangoCompositeFilterOptionResolver<AllMatchFilterOption> {
 
   public ArangoAllMatchFilterOptionResolver(
       StructureSchemaFinder structureSchemaFinder,
-      @Lazy GenericSearchOptionResolver<ArangoQuery> genericFilterOptionResolver
+      GenericSearchOptionResolver<ArangoQuery> genericFilterOptionResolver
   ) {
     super(structureSchemaFinder, genericFilterOptionResolver);
   }

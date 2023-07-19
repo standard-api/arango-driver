@@ -6,9 +6,7 @@ import ai.stapi.graphoperations.graphLanguage.graphDescription.GraphDescription;
 import ai.stapi.graphoperations.objectGraphLanguage.ObjectGraphMapping;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.stereotype.Service;
 
-@Service
 public class GenericSubQueryResolver {
 
   private final List<ArangoSubQueryResolver> subQueryResolvers;
@@ -31,8 +29,10 @@ public class GenericSubQueryResolver {
   }
 
   @NotNull
-  private ArangoSubQueryResolver getSupportedResolver(ArangoSubQueryBuilder builder,
-      GraphDescription graphDescription) {
+  private ArangoSubQueryResolver getSupportedResolver(
+      ArangoSubQueryBuilder builder,
+      GraphDescription graphDescription
+  ) {
     var supported = this.subQueryResolvers.stream()
         .filter(resolver -> resolver.supports(builder, graphDescription))
         .toList();

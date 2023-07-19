@@ -1,5 +1,6 @@
 package ai.stapi.arangograph;
 
+import ai.stapi.arangograph.graphLoader.fixtures.testsystem.TestSystemModelDefinitionsLoader;
 import ai.stapi.graph.EdgeRepository;
 import ai.stapi.graph.NodeRepository;
 import ai.stapi.graph.attribute.LeafAttribute;
@@ -27,7 +28,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
-@StructureDefinitionScope(ArangoGraphRepositoryTestStructureLoader.SCOPE)
+@StructureDefinitionScope({
+    ArangoGraphRepositoryTestStructureLoader.SCOPE,
+    TestSystemModelDefinitionsLoader.SCOPE
+})
 public abstract class AbstractNodeRepositoryTest extends SchemaIntegrationTestCase {
 
   protected abstract NodeRepository getNodeRepository();
@@ -36,8 +40,10 @@ public abstract class AbstractNodeRepositoryTest extends SchemaIntegrationTestCa
 
   @Test
   public void itShouldNotLoadNode_ByIdAndType_WhenEmpty() throws NodeNotFound {
-    Executable runnable =
-        () -> getNodeRepository().loadNode(UniversallyUniqueIdentifier.randomUUID(), "irrelevant");
+    Executable runnable = () -> getNodeRepository().loadNode(
+        UniversallyUniqueIdentifier.randomUUID(), 
+        "irrelevant"
+    );
 
     Assertions.assertThrows(NodeNotFound.class, runnable);
   }

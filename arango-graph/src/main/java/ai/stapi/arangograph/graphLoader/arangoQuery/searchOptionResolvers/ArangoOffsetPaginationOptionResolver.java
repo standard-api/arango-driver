@@ -10,19 +10,22 @@ import ai.stapi.graphoperations.graphLoader.search.SearchOption;
 import ai.stapi.graphoperations.graphLoader.search.paginationOption.OffsetPaginationOption;
 import ai.stapi.schema.structureSchemaProvider.StructureSchemaFinder;
 import java.util.HashMap;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Service;
 
-@Service
 public class ArangoOffsetPaginationOptionResolver
     extends AbstractArangoSearchOptionResolver<OffsetPaginationOption> {
 
   public ArangoOffsetPaginationOptionResolver(
-      @Lazy ArangoGenericSearchOptionResolver arangoGenericSearchOptionResolver,
-      StructureSchemaFinder structureSchemaFinder, GenericSubQueryResolver genericSubQueryResolver,
-      GraphLoaderOgmFactory graphLoaderOgmFactory) {
-    super(arangoGenericSearchOptionResolver, structureSchemaFinder, genericSubQueryResolver,
-        graphLoaderOgmFactory);
+      ArangoGenericSearchOptionResolver arangoGenericSearchOptionResolver,
+      StructureSchemaFinder structureSchemaFinder, 
+      GenericSubQueryResolver genericSubQueryResolver,
+      GraphLoaderOgmFactory graphLoaderOgmFactory
+  ) {
+    super(
+        arangoGenericSearchOptionResolver, 
+        structureSchemaFinder, 
+        genericSubQueryResolver,
+        graphLoaderOgmFactory
+    );
   }
 
   @Override

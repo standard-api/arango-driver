@@ -2,9 +2,7 @@ package ai.stapi.arangograph.graphLoader.arangoQuery.builder;
 
 import ai.stapi.arangograph.graphLoader.arangoQuery.searchOptionResolvers.ArangoGenericSearchOptionResolver;
 import ai.stapi.schema.structureSchemaProvider.StructureSchemaFinder;
-import org.springframework.stereotype.Service;
 
-@Service
 public class ArangoQueryBuilderProvider {
 
   private final ArangoGenericSearchOptionResolver searchOptionResolver;

@@ -1,11 +1,11 @@
 package ai.stapi.arangograph.graphLoader.complexjoinedgraph;
 
-import ai.stapi.arangograph.configuration.ArangoGraphRepositoryConfiguration;
 import ai.stapi.arangograph.graphLoader.ArangoGraphLoader;
 import ai.stapi.arangograph.graphLoader.fixtures.AttributeTypes;
 import ai.stapi.arangograph.graphLoader.fixtures.ComplexJoinedGraphFixturesProvider;
 import ai.stapi.arangograph.graphLoader.fixtures.GraphLoaderExpectedTestClass;
 import ai.stapi.arangograph.graphLoader.fixtures.model.GraphLoaderTestDefinitionsLoader;
+import ai.stapi.arangograph.graphLoader.fixtures.testsystem.TestSystemModelDefinitionsLoader;
 import ai.stapi.graph.repositorypruner.RepositoryPruner;
 import ai.stapi.graphoperations.graphLanguage.graphDescription.specific.positive.AllAttributesDescription;
 import ai.stapi.graphoperations.graphLanguage.graphDescription.specific.positive.EdgeDescriptionParameters;
@@ -36,10 +36,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Import;
 
-@Import(ArangoGraphRepositoryConfiguration.class)
-@StructureDefinitionScope(GraphLoaderTestDefinitionsLoader.SCOPE)
+@StructureDefinitionScope({
+    GraphLoaderTestDefinitionsLoader.SCOPE,
+    TestSystemModelDefinitionsLoader.SCOPE
+})
 class ComplexJoinedGraphArangoGraphLoaderTest extends SchemaIntegrationTestCase {
 
   @Autowired

@@ -10,15 +10,12 @@ import ai.stapi.graphoperations.graphLoader.search.SearchOption;
 import ai.stapi.graphoperations.graphLoader.search.sortOption.DescendingSortOption;
 import ai.stapi.schema.structureSchemaProvider.StructureSchemaFinder;
 import java.util.HashMap;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Service;
 
-@Service
 public class ArangoDescendingSortOptionResolver
     extends AbstractArangoSearchOptionResolver<DescendingSortOption> {
 
   public ArangoDescendingSortOptionResolver(
-      @Lazy ArangoGenericSearchOptionResolver arangoGenericSearchOptionResolver,
+      ArangoGenericSearchOptionResolver arangoGenericSearchOptionResolver,
       StructureSchemaFinder structureSchemaFinder,
       GenericSubQueryResolver genericSubQueryResolver,
       GraphLoaderOgmFactory graphLoaderOGMFactory

@@ -1,4 +1,4 @@
-package ai.stapi.arangograph;
+package ai.stapi.arangograph.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

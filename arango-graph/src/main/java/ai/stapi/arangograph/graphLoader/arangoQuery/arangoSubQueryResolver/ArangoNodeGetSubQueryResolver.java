@@ -6,14 +6,11 @@ import ai.stapi.graphoperations.graphLanguage.graphDescription.GraphDescription;
 import ai.stapi.graphoperations.graphLanguage.graphDescription.specific.positive.AbstractNodeDescription;
 import ai.stapi.graphoperations.objectGraphLanguage.ObjectGraphMapping;
 import ai.stapi.graphoperations.objectGraphLanguage.ObjectObjectGraphMapping;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Service;
 
-@Service
 public class ArangoNodeGetSubQueryResolver extends AbstractArangoSubQueryResolver {
 
 
-  public ArangoNodeGetSubQueryResolver(@Lazy GenericSubQueryResolver genericSubQueryResolver) {
+  public ArangoNodeGetSubQueryResolver(GenericSubQueryResolver genericSubQueryResolver) {
     super(genericSubQueryResolver);
   }
 

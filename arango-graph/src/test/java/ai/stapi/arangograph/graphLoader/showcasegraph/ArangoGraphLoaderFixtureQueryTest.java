@@ -1,6 +1,5 @@
 package ai.stapi.arangograph.graphLoader.showcasegraph;
 
-import ai.stapi.arangograph.configuration.ArangoGraphRepositoryConfiguration;
 import ai.stapi.arangograph.graphLoader.ArangoGraphLoader;
 import ai.stapi.arangograph.graphLoader.fixtures.ShowcaseGraphFixturesProvider;
 import ai.stapi.arangograph.graphLoader.fixtures.testsystem.TestSystemModelDefinitionsLoader;
@@ -34,9 +33,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Import;
 
-@Import(ArangoGraphRepositoryConfiguration.class)
 @StructureDefinitionScope(TestSystemModelDefinitionsLoader.SCOPE)
 class ArangoGraphLoaderFixtureQueryTest extends SchemaIntegrationTestCase {
 

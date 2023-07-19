@@ -9,14 +9,10 @@ import ai.stapi.graphoperations.graphLanguage.graphDescription.specific.positive
 import ai.stapi.graphoperations.graphLanguage.graphDescription.specific.query.GraphElementQueryDescription;
 import ai.stapi.graphoperations.objectGraphLanguage.ObjectGraphMapping;
 import ai.stapi.graphoperations.objectGraphLanguage.ObjectObjectGraphMapping;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Service;
 
-@Service
 public class ArangoEdgeCollectionSubQueryResolver extends AbstractArangoSubQueryResolver {
 
-  public ArangoEdgeCollectionSubQueryResolver(
-      @Lazy GenericSubQueryResolver genericSubQueryResolver) {
+  public ArangoEdgeCollectionSubQueryResolver(GenericSubQueryResolver genericSubQueryResolver) {
     super(genericSubQueryResolver);
   }
 

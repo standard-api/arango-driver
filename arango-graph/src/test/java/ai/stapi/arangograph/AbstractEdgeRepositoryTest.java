@@ -1,5 +1,6 @@
 package ai.stapi.arangograph;
 
+import ai.stapi.arangograph.graphLoader.fixtures.testsystem.TestSystemModelDefinitionsLoader;
 import ai.stapi.graph.EdgeRepository;
 import ai.stapi.graph.NodeIdAndType;
 import ai.stapi.graph.NodeRepository;
@@ -23,7 +24,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
-@StructureDefinitionScope({ArangoGraphRepositoryTestStructureLoader.SCOPE})
+@StructureDefinitionScope({
+    ArangoGraphRepositoryTestStructureLoader.SCOPE,
+    TestSystemModelDefinitionsLoader.SCOPE
+})
 public abstract class AbstractEdgeRepositoryTest extends SchemaIntegrationTestCase {
 
   protected abstract EdgeRepository getEdgeRepository();

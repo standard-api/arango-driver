@@ -8,21 +8,21 @@ import ai.stapi.graphoperations.graphLoader.graphLoaderOGMFactory.GraphLoaderOgm
 import ai.stapi.graphoperations.graphLoader.search.SearchOption;
 import ai.stapi.graphoperations.graphLoader.search.filterOption.EndsWithFilterOption;
 import ai.stapi.schema.structureSchemaProvider.StructureSchemaFinder;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Service;
 
-@Service
-public class ArangoEndsWithFilterOptionResolver
-    extends AbstractArangoOneValueFilterOprionResolver<EndsWithFilterOption> {
+public class ArangoEndsWithFilterOptionResolver extends AbstractArangoOneValueFilterOprionResolver<EndsWithFilterOption> {
 
   public ArangoEndsWithFilterOptionResolver(
-      @Lazy ArangoGenericSearchOptionResolver arangoGenericSearchOptionResolver,
+      ArangoGenericSearchOptionResolver arangoGenericSearchOptionResolver,
       StructureSchemaFinder structureSchemaFinder,
       GenericSubQueryResolver genericSubQueryResolver,
       GraphLoaderOgmFactory graphLoaderOGMFactory
   ) {
-    super(arangoGenericSearchOptionResolver, structureSchemaFinder, genericSubQueryResolver,
-        graphLoaderOGMFactory);
+    super(
+        arangoGenericSearchOptionResolver, 
+        structureSchemaFinder, 
+        genericSubQueryResolver,
+        graphLoaderOGMFactory
+    );
   }
 
   @Override

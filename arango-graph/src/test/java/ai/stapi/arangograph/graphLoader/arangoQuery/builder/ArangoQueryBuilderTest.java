@@ -6,6 +6,7 @@ import ai.stapi.arangograph.graphLoader.arangoQuery.ast.AqlVariable;
 import ai.stapi.arangograph.graphLoader.arangoQuery.exceptions.CannotBuildArangoQuery;
 import ai.stapi.arangograph.graphLoader.arangoQuery.searchOptionResolvers.ArangoGenericSearchOptionResolver;
 import ai.stapi.arangograph.graphLoader.fixtures.AttributeTypes;
+import ai.stapi.arangograph.graphLoader.fixtures.testsystem.TestSystemModelDefinitionsLoader;
 import ai.stapi.graphoperations.graphLanguage.graphDescription.specific.positive.EdgeDescriptionParameters;
 import ai.stapi.graphoperations.graphLanguage.graphDescription.specific.positive.IngoingEdgeDescription;
 import ai.stapi.graphoperations.graphLanguage.graphDescription.specific.positive.NodeDescription;
@@ -37,7 +38,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@StructureDefinitionScope(ArangoQueryBuilderTestStructureLoader.SCOPE)
+@StructureDefinitionScope({
+    ArangoQueryBuilderTestStructureLoader.SCOPE,
+    TestSystemModelDefinitionsLoader.SCOPE
+})
 class ArangoQueryBuilderTest extends SchemaIntegrationTestCase {
 
   @Autowired

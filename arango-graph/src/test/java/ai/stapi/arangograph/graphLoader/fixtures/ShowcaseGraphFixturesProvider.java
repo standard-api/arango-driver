@@ -27,7 +27,7 @@ public class ShowcaseGraphFixturesProvider {
   public Graph getFixtureGraph() {
     var structures = this.genericAdHocModelDefinitionsLoader.load(
         new ScopeOptions(TestSystemModelDefinitionsLoader.SCOPE, ScopeOptions.TEST_TAG),
-        "ImportStructureDefinition",
+        "RawStructureDefinitionData",
         RawStructureDefinitionData.class
     );
     var organizations = this.genericAdHocModelDefinitionsLoader.load(

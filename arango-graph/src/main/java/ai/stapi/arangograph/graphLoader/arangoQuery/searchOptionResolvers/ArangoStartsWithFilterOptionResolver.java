@@ -8,15 +8,12 @@ import ai.stapi.graphoperations.graphLoader.graphLoaderOGMFactory.GraphLoaderOgm
 import ai.stapi.graphoperations.graphLoader.search.SearchOption;
 import ai.stapi.graphoperations.graphLoader.search.filterOption.StartsWithFilterOption;
 import ai.stapi.schema.structureSchemaProvider.StructureSchemaFinder;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Service;
 
-@Service
 public class ArangoStartsWithFilterOptionResolver
     extends AbstractArangoOneValueFilterOprionResolver<StartsWithFilterOption> {
 
   public ArangoStartsWithFilterOptionResolver(
-      @Lazy ArangoGenericSearchOptionResolver arangoGenericSearchOptionResolver,
+      ArangoGenericSearchOptionResolver arangoGenericSearchOptionResolver,
       StructureSchemaFinder structureSchemaFinder,
       GenericSubQueryResolver genericSubQueryResolver,
       GraphLoaderOgmFactory graphLoaderOGMFactory

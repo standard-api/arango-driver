@@ -19,8 +19,8 @@ GraphDescription: OutgoingEdgeQueryDescription
     "paginationOption" : null
   },
   "collectionComparisonOperator" : "ANY",
-  "compact" : true,
   "outgoing" : true,
+  "compact" : true,
   "graphTraversingType" : "edge",
   "declarationType" : "PositiveGraphDescription",
   "ingoing" : false

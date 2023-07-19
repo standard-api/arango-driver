@@ -9,16 +9,13 @@ import ai.stapi.graphoperations.graphLoader.search.SearchResolvingContext;
 import ai.stapi.graphoperations.graphLoader.search.filterOption.OrFilterOption;
 import ai.stapi.schema.structureSchemaProvider.StructureSchemaFinder;
 import java.util.HashMap;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Service;
 
-@Service
 public class ArangoOrFilterOptionResolver
     extends AbstractArangoCompositeFilterOptionResolver<OrFilterOption> {
 
   public ArangoOrFilterOptionResolver(
       StructureSchemaFinder structureSchemaFinder,
-      @Lazy GenericSearchOptionResolver<ArangoQuery> genericFilterOptionResolver
+      GenericSearchOptionResolver<ArangoQuery> genericFilterOptionResolver
   ) {
     super(structureSchemaFinder, genericFilterOptionResolver);
   }

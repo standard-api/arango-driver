@@ -13,14 +13,10 @@ import ai.stapi.graphoperations.objectGraphLanguage.ObjectFieldDefinition;
 import ai.stapi.graphoperations.objectGraphLanguage.ObjectGraphMapping;
 import ai.stapi.graphoperations.objectGraphLanguage.ObjectObjectGraphMapping;
 import java.util.Map;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Service;
 
-@Service
 public class ArangoGraphTraversalSubQueryResolver extends AbstractArangoSubQueryResolver {
 
-  public ArangoGraphTraversalSubQueryResolver(
-      @Lazy GenericSubQueryResolver genericSubQueryResolver) {
+  public ArangoGraphTraversalSubQueryResolver(GenericSubQueryResolver genericSubQueryResolver) {
     super(genericSubQueryResolver);
   }
 
