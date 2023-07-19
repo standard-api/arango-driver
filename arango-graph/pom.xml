@@ -5,11 +5,10 @@
     <parent>
         <groupId>ai.stapi</groupId>
         <artifactId>arango-driver</artifactId>
-        <version>0.0.1</version>
+        <version>0.0.1-SNAPSHOT</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <artifactId>arango-graph</artifactId>
-    <version>0.0.1</version>
     <name>Stapi.ai Arango Graph</name>
     <dependencies>
         <dependency>
