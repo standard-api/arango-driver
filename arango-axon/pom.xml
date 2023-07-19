@@ -14,6 +14,11 @@
     <dependencies>
         <dependency>
             <groupId>ai.stapi</groupId>
+            <artifactId>arango-graph</artifactId>
+            <version>${stapi.arangodriver.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ai.stapi</groupId>
             <artifactId>axon-system</artifactId>
             <version>${stapi.axondriver.version}</version>
         </dependency>
