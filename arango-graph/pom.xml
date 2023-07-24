@@ -6,7 +6,6 @@
         <groupId>ai.stapi</groupId>
         <artifactId>arango-driver</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <artifactId>arango-graph</artifactId>
     <name>Stapi.ai Arango Graph</name>
