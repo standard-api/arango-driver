@@ -1,0 +1,41 @@
+name: Deploy current snapshot
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy-snapshot:
+    runs-on: ubuntu-latest
+    environment: myenvironment
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup JDK for sonatype release
+        uses: ./.github/actions/setup-jdk-for-sonatype-release
+        with:
+          ossrh_gpg_secret_key: ${{ secrets.OSSRH_GPG_SECRET_KEY }}
+
+      - name: Check if current version is a snapshot
+        id: checkSnapshot
+        uses: ./.github/actions/check-if-snapshot
+
+      - name: Fail if current version is not a snapshot
+        if: ${{ steps.checkSnapshot.outputs.is_snapshot == 'false' }}
+        run: |
+          echo "Error: The current version is not a snapshot, which is weird, because it should happen automatically.\
+          Either workflow for releasing new version failed - in that case, please re-run it (should be idempotent so no worries re-running it).\
+          Or there happened some collision between running release and this workflow. In that case, re-running this workflow \
+          should help. If nothing helps, it would be very nice of you if you could fix the problem if you can and send PR."
+          exit 1
+
+      - name: Publish snapshot to Sonatype
+        if: ${{ steps.checkSnapshot.outputs.is_snapshot == 'true' }}
+        uses: ./.github/actions/deploy-sonatype-all-in-order
+        with:
+          ossrh_username: ${{ secrets.OSSRH_USERNAME }}
+          ossrh_token: ${{ secrets.OSSRH_TOKEN }}
+          ossrh_gpg_secret_key_password: ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}

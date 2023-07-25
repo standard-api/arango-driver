@@ -1,0 +1,49 @@
+name: Run checks
+
+on:
+  push:
+    branches-ignore:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    services:
+      arangodb:
+        image: arangodb/arangodb:latest
+        ports:
+          - 8555:8529
+        env:
+          ARANGO_ROOT_PASSWORD: rootpassword
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup JDK with maven
+        uses: ./.github/actions/setup-jdk-with-maven
+
+      - name: Install parent POM
+        run: mvn install -N
+
+      - name: Wait for ArangoDB
+        run: |
+          for i in {1..60}; do
+            echo "Checking ArangoDB health ($i/60)..."
+            if curl -f --dump - --user "root:rootpassword" -X GET http://localhost:8555/_api/version; then 
+              echo "ArangoDB is healthy"
+              break
+            else 
+              echo "Health check failed"
+              if [ $i -eq 60 ]; then
+                echo "Health check failed after 60 attempts"
+                exit 1
+              fi
+              sleep 1
+            fi
+          done
+          
+      - name: Build and check
+        uses: ./.github/actions/build-and-check
+        with:
+          sonar_token: ${{ secrets.SONAR_TOKEN }}
