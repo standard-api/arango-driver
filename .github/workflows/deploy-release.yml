@@ -47,7 +47,7 @@ jobs:
           github_token: ${{ secrets.GH_STAPI_BOT_TOKEN }}
           bump: ${{ github.event.inputs.semverBump }}
           version: ${{ steps.bumpedVersion.outputs.version }}
-          repository: core
+          repository: arango-driver
 
       - name: Checkout updated master
         uses: actions/checkout@v3
@@ -59,7 +59,7 @@ jobs:
         id: check_version
         with:
           group_id: 'ai.stapi'
-          artifact_id: 'core'
+          artifact_id: 'arango-driver'
           version: ${{ steps.bumpedVersion.outputs.version }}
 
       - name: Setup JDK for sonatype release
@@ -103,7 +103,7 @@ jobs:
         with:
           discord_webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}
           release_version: ${{ steps.bumpedVersion.outputs.version }}
-          repository: "standard-api/core"
+          repository: "standard-api/arango-driver"
           changelog: ${{ steps.publish_release_github.outputs.changelog }}
 
       - name: Set next SNAPSHOT version
@@ -112,20 +112,12 @@ jobs:
         with:
           bump: 'snapshot'
 
-      - name: Repository Dispatch
-        uses: peter-evans/repository-dispatch@v2
-        with:
-          token: ${{ secrets.GH_STAPI_BOT_TOKEN }}
-          repository: ${{ matrix.repo }}
-          event-type: stapi-core-released
-          client-payload: '{"new_version": "${{ steps.bumpedVersion.outputs.version }}","new_snapshot_version": "${{ steps.bumpedVersionSnapshot.outputs.version }}","bumpType": "${{ github.event.inputs.semverBump }}"}'
-
       - name: Create snapshot commit using PR and automatic merge
         uses: ./.github/actions/create-snapshot-commit
         with:
           github_token: ${{ secrets.GH_STAPI_BOT_TOKEN }}
           version: ${{ steps.bumpedVersionSnapshot.outputs.version }}
-          repository: 'core'
+          repository: 'arango-driver'
 
       - name: Checkout updated master
         uses: actions/checkout@v3
